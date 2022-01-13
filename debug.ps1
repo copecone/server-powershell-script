@@ -11,13 +11,13 @@ if (!(Test-Path -Path $server_folder))
 }
 
 $start_script = "start.ps1"
-$start_config = "$start_script.conf"
+$start_config = "$(Split-Path "$PSCommandPath" -LeafBase).sh.conf"
 
 if (!(Test-Path -Path "$server_folder/$start_script")) {
   if (Test-Path -Path ".server/$start_script") {
     Copy-Item ".server/$start_script" "$server_folder/$start_script"
   } else {
-    Invoke-WebRequest -OutFile "$server_folder/$start_script" -Uri "https://raw.githubusercontent.com/monun/server-script/paper/.server/$start_script"
+    Invoke-WebRequest -OutFile "$server_folder/$start_script" -Uri "https://raw.githubusercontent.com/copecone/server-powershell-script/main/.server/$start_script"
   }
 }
 
